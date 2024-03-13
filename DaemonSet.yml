@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: httpd-daemonset
+  labels:
+    type: web
+spec:
+  selector:
+    matchLabels:
+      type: web
+  template:
+    metadata:
+      name: httpd-daemonset
+      labels:
+        type: web  
+    spec:    
+      containers:
+        - name: httpd-pod
+          image: httpd
+          ports:
+            - containerPort: 80
+              hostPort: 8080
+             
+...                
