@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: toleration
+  labels:
+    type: taint
+spec:
+  containers:
+    - name: jenkins
+      image: jenkins/jenkins
+      ports:
+        - containerPort: 8080
+          hostPort: 80
+  tolerations:
+    - key: slave1
+      operator: Equal
+      value: slave2
+      effect: NoSchedule
+...            
