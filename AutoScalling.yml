@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-apache
+  labels:
+    type: web
+spec:
+  selector:
+    matchLabels:
+      type: web
+  template:
+    metadata:
+      name: php-apache
+      labels:
+        type: web
+    spec:  
+      containers:
+        - name: apache
+          image: intelliqit/mynew
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 250m
+            limits:
+              cpu: 350m    
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-apache
+  labels:
+    type: web
+spec:
+  ports:
+    - port: 80
+  selector:
+    type: web    
+...      
